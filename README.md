@@ -1,3 +1,1 @@
-#Website link
-
-https://chrishoertnagl.github.io/MobCompWebsite/ 
+This is my App
