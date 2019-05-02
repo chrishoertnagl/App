@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".MainActivity"
+    android:background="@color/colorAccent">
+
+    <Button
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif"
+        android:clickable="false"
+        android:layout_weight="1"
+        android:id="@+id/MainText"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:text="@string/main_text"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="@color/darkGrey"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif"
+        android:clickable="false"
+        android:layout_weight="1"
+        android:id="@+id/connectButton"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:text="@string/connect_text"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="@color/darkGrey"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif"
+        android:clickable="false"
+        android:layout_weight="1"
+        android:id="@+id/lernButton"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:text="Learn More"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
