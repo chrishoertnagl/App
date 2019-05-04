@@ -1,23 +1,18 @@
 package com.chris.massagehat;
 
 import android.Manifest;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chris.massagehat.ble.BluetoothConnectionActivity;
-import com.chris.massagehat.ble.BluetoothLeService;
 
 import static com.chris.massagehat.ble.BluetoothConnectionActivity.BT_ERROR;
 import static com.chris.massagehat.ble.BluetoothConnectionActivity.BT_PERMISSION_NOT_GRANTED;
@@ -26,14 +21,13 @@ import static com.chris.massagehat.ble.BluetoothConnectionActivity.REQUEST_SCAN_
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String ADRESS_KEY = "adresskey";
+    public static final String ADDRESS_KEY = "adresskey";
     private static final int REQUEST_GPS_PERMISSIONS = 16;
-    private final String TAG = "Massagehat";
 
-    private boolean mBleSetup = false;
+    private boolean bleSetup = false;
     private boolean permissionGranted = false;
 
-    private String mDeviceAddress = "";
+    private String deviceAddress = "";
 
     Button button = null;
 
@@ -43,8 +37,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getPermissions();
 
+        Button learnButton = findViewById(R.id.lernButton);
+        learnButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        gotoLearnmore();
+                    }
+                }
+        );
+
         button = findViewById(R.id.connectButton);
-        if (mBleSetup) {
+        if (bleSetup) {
             button.setText(R.string.start_text);
         } else {
             button.setText(R.string.connect_text);
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mBleSetup) {
+                        if (bleSetup) {
                             startMassage();
                         } else {
                             setupBluetooth();
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBluetooth() {
         if (permissionGranted) {
-            if (!mBleSetup) {
+            if (!bleSetup) {
                 Intent startBleIntent = new Intent(this, BluetoothConnectionActivity.class);
                 startBleIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startBleIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -108,11 +112,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void startMassage() {
         Intent intent = new Intent(this, MassageActivity.class);
-        intent.putExtra(ADRESS_KEY, mDeviceAddress);
+        intent.putExtra(ADDRESS_KEY, deviceAddress);
         startActivity(intent);
     }
 
-
+    private void gotoLearnmore() {
+        Intent intent = new Intent(this, LearnMoreActivity.class);
+        intent.putExtra(ADDRESS_KEY, deviceAddress);
+        startActivity(intent);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -120,15 +128,23 @@ public class MainActivity extends AppCompatActivity {
             case REQUEST_SCAN_BLE:
                 if (data != null) {
                     Bundle extras = data.getExtras();
-                    mDeviceAddress = ((String) extras.get(BluetoothConnectionActivity.EXTRA_DEVICE_ADDR));
-                    mBleSetup = true;
+                    if (extras != null) {
+                        deviceAddress = ((String) extras.get(BluetoothConnectionActivity.EXTRA_DEVICE_ADDR));
+                        bleSetup = true;
 
-                    Toast.makeText(this,
-                            "Found device",
-                            Toast.LENGTH_LONG)
-                            .show();
+                        Toast.makeText(this,
+                                "Found device",
+                                Toast.LENGTH_LONG)
+                                .show();
 
-                    button.setText(R.string.start_text);
+                        button.setText(R.string.start_text);
+                    } else {
+                        Toast.makeText(this,
+                                "No address for Bluetooth device passed",
+                                Toast.LENGTH_LONG)
+                                .show();
+                    }
+
                 }
 
                 break;
@@ -158,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                         .show();
                 break;
             default:
-                Log.e(TAG, "Activity ended due to an unknown reason");
+                Log.e(Constants.TAG, "Activity ended due to an unknown reason");
                 break;
         }
     }

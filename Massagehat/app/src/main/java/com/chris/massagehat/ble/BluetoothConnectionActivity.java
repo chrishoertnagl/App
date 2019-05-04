@@ -20,15 +20,6 @@ import com.chris.massagehat.Constants;
 
 import java.util.LinkedList;
 
-
-
-/**
- * Activity that can be used for scanning BLE devices.
- * Returns the device's address in the return intent extra.
- *
- * @author Josh Romanowski
- */
-
 public class BluetoothConnectionActivity extends Activity {
     private static final String TAG = BluetoothConnectionActivity.class.getSimpleName();
 
@@ -59,7 +50,7 @@ public class BluetoothConnectionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.setVisible(false);
         // at first check if BLE is supported on the current device
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Log.e(TAG, "BLE is not supported");
@@ -109,10 +100,6 @@ public class BluetoothConnectionActivity extends Activity {
         }
     }
 
-    public boolean isScanning() {
-        return mScanning;
-    }
-
     private void scanLeDevice() {
         final BluetoothLeScanner scanner = mBluetoothAdapter.getBluetoothLeScanner();
 
@@ -147,7 +134,7 @@ public class BluetoothConnectionActivity extends Activity {
             public void run() {
                 mScanning = false;
                 scanner.stopScan(leScanCallback);
-                Log.i(TAG, "Stop scaning BLE");
+                Log.i(TAG, "Stop scanning BLE");
 
                 if (mDevice == null) {
                     setResult(REQUEST_NO_DEVICE_FOUND);

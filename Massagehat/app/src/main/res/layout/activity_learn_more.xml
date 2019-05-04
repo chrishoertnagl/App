@@ -6,11 +6,64 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="3"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/colorAccent">
 
-    <TextView
-        android:text="Hallo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How to:"
+            android:textSize="30dp"
+            android:textColor="@color/mainbuttonColor"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_weight="9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to"
+            android:textSize="20dp"
+            android:textColor="@color/mainbuttonColor"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+            android:layout_margin="5dp"
+            android:text="Get Amount of Massage Points"
+            android:textColor="@color/white"
+            android:background="@drawable/mybtnback"
+            android:id="@+id/getamount_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="4"
+            android:textSize="25dp"
+            android:textColor="@color/mainbuttonColor"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -14,13 +14,6 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.UUID;
 
-/**
- * Service for managing a ble connection to a given device.
- * Code derived from https://github.com/googlesamples/android-BluetoothLeGatt
- *
- * @author Josh Romanowski
- */
-
 public class BluetoothLeService {
     private static final String TAG = BluetoothLeService.class.getSimpleName();
 
@@ -32,6 +25,8 @@ public class BluetoothLeService {
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothGatt mBluetoothGatt;
     private int mConnectionState = STATE_DISCONNECTED;
+
+    Boolean reading = false;
 
     private Context mContext;
 
@@ -77,6 +72,15 @@ public class BluetoothLeService {
                 Log.e(TAG, "Writing characteristic failed");
             }
         }
+
+        @Override
+        public void onCharacteristicRead(BluetoothGatt gatt,
+                                          BluetoothGattCharacteristic characteristic, int status) {
+            if (!(status == BluetoothGatt.GATT_SUCCESS)) {
+                Log.e(TAG, "Reading characteristic failed");
+            }
+            reading = false;
+        }
     };
 
     /**
@@ -87,7 +91,7 @@ public class BluetoothLeService {
         if (mConnectionState == STATE_CONNECTED)
             return true;
 
-        if (mBluetoothAdapter == null || address == null) {
+        if (mBluetoothAdapter == null || address.equals("")) {
             Log.w(TAG, "Device not initialized");
             return false;
         }
@@ -136,7 +140,12 @@ public class BluetoothLeService {
 
         BluetoothGattService service = mBluetoothGatt.
                 getService(UUID.fromString(serviceID));
-        return service.getCharacteristic(UUID.fromString(characteristicsID));
+        if (service != null) {
+            return service.getCharacteristic(UUID.fromString(characteristicsID));
+        } else {
+            return null;
+        }
+
     }
 
     /**
@@ -151,10 +160,29 @@ public class BluetoothLeService {
 
         if (!mBluetoothGatt.writeCharacteristic(characteristic)) {
             Log.e(TAG, "Initializing writing characteristic failed");
+        } else {
+            Log.i(TAG, "Writing characteristic: " + characteristic.getUuid());
+            Log.i(TAG, "Data: " + Arrays.toString(characteristic.getValue()));
+        }
+    }
+
+    public void readCharacteristic(BluetoothGattCharacteristic characteristic) {
+        if (mBluetoothGatt == null || mConnectionState != STATE_CONNECTED) {
+            Log.w(TAG, "Gatt not available");
+            return;
         }
 
-        Log.i(TAG, "Writing characteristic: " + characteristic.getUuid());
-        Log.i(TAG, "Data: " + Arrays.toString(characteristic.getValue()));
+        if (!mBluetoothGatt.readCharacteristic(characteristic)) {
+            Log.e(TAG, "Initializing reading characteristic failed");
+        } else {
+            reading = true;
+            Log.i(TAG, "Reading characteristic: " + characteristic.getUuid());
+            Log.i(TAG, "Data: " + Arrays.toString(characteristic.getValue()));
+        }
+    }
+
+    public boolean isReading() {
+        return this.reading;
     }
 
     public int getConnectionState() {

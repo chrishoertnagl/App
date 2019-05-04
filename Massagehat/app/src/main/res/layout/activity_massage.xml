@@ -9,70 +9,13 @@
     tools:context=".MainActivity"
     android:background="@color/colorAccent">
 
-     <TextView
-         android:layout_weight="1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Choose a Program:"
-         android:textSize="30dp"
-         android:textColor="@color/black"
-         android:textAlignment="center"/>
-    <LinearLayout
-        android:layout_weight="4"
-        android:weightSum="2"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/relax_button"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <Button
-                android:id="@+id/action_button"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/wakeup_button"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <Button
-                android:id="@+id/crazy_button"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
     <TextView
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose a Strength:"
         android:textSize="30dp"
-        android:textColor="@color/black"
+        android:textColor="@color/mainbuttonColor"
         android:textAlignment="center"/>
     <LinearLayout
         android:layout_weight="4"
@@ -88,11 +31,21 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:layout_margin="5dp"
+                android:text="strong"
+                android:textColor="@color/white"
+                android:background="@drawable/mybtnback"
+                android:id="@+id/strong_button"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <Button
+                android:layout_margin="5dp"
+                android:text="medium"
+                android:textColor="@color/white"
+                android:background="@drawable/mybtnback"
+                android:id="@+id/medium_button"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -106,13 +59,94 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/strong_button"
+                android:layout_margin="5dp"
+                android:text="weak"
+                android:textColor="@color/white"
+                android:background="@drawable/mybtnback"
+                android:id="@+id/weak_button"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <Button
+                android:layout_margin="5dp"
+                android:text="Off"
+                android:textColor="@color/white"
+                android:background="@drawable/mybtnbackclicked"
                 android:id="@+id/off_button"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+     <TextView
+         android:layout_weight="1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Choose a Program:"
+         android:textSize="30dp"
+         android:textColor="@color/mainbuttonColor"
+         android:textAlignment="center"/>
+    <LinearLayout
+        android:layout_weight="4"
+        android:weightSum="2"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="relax"
+                android:layout_margin="5dp"
+                android:background="@drawable/mybtnback"
+                android:textColor="@color/white"
+                android:id="@+id/relax_button"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:text="action"
+                android:layout_margin="5dp"
+                android:background="@drawable/mybtnback"
+                android:textColor="@color/white"
+                android:id="@+id/action_button"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="wake up"
+                android:layout_margin="5dp"
+                android:background="@drawable/mybtnback"
+                android:textColor="@color/white"
+                android:id="@+id/wakeup_button"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:text="crazy"
+                android:layout_margin="5dp"
+                android:background="@drawable/mybtnback"
+                android:textColor="@color/white"
+                android:id="@+id/crazy_button"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

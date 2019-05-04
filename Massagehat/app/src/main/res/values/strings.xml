@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Massagehat</string>
     <string name="main_text">Welcome to the Massagehat App</string>
-    <string name="connect_text">Connect to the Hat</string>
-    <string name="start_text">Start Massage</string>
+    <string name="connect_text">Search for the Hat</string>
+    <string name="start_text">Get a Massage!</string>
+    <string name="how_to">1. Search for the hat via Bluetooth
+        \n 2. Click Start Massage to connect to the hat
+        \n 3. Choose a strength
+        \n 4. Choose a program
+        \n 5. Enjoy your massage!</string>
 </resources>

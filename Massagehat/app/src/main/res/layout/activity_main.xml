@@ -13,7 +13,7 @@
         android:textAllCaps="false"
         android:padding="10dp"
         android:layout_margin="10dp"
-        android:background="@color/black"
+        android:background="@drawable/mymainback"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
         android:clickable="false"
@@ -28,7 +28,7 @@
     <Button
         android:textAllCaps="false"
         android:layout_margin="10dp"
-        android:background="@color/darkGrey"
+        android:background="@drawable/mybtnback"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
         android:clickable="false"
@@ -43,7 +43,7 @@
     <Button
         android:textAllCaps="false"
         android:layout_margin="10dp"
-        android:background="@color/darkGrey"
+        android:background="@drawable/mybtnback"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
         android:clickable="false"
